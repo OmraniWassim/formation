@@ -13,12 +13,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "ETUDELEVEL")
 public class EtudeLevel {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String level;
+    private String niveaux;
 
     @OneToMany(mappedBy = "etudeLevel")
     private List<Collaborateur> collaborateurs;
