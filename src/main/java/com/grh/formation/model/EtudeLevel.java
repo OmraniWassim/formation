@@ -21,6 +21,7 @@ public class EtudeLevel {
 
     private String niveaux;
 
+
     @OneToMany(mappedBy = "etudeLevel")
     private List<Collaborateur> collaborateurs;
 
