@@ -24,5 +24,8 @@ public class Departement {
     private List<Collaborateur> collaborateurs;
 
 
+    public Departement(String depName) {
+        DepName = depName;
+    }
 }
 

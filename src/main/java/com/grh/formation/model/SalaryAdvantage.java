@@ -24,4 +24,7 @@ public class SalaryAdvantage {
     @OneToMany(mappedBy = "salaryAdvantage")
     private List<Collaborateur> collaborateurs;
 
+    public SalaryAdvantage(String advantage) {
+        this.advantage = advantage;
+    }
 }

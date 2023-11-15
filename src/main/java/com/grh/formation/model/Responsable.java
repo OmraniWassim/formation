@@ -23,5 +23,8 @@ public class Responsable {
     @OneToMany(mappedBy = "responsable")
     private List<Collaborateur> collaborateurs;
 
-    // Constructors, getters, and setters
+    public Responsable(String resName) {
+        ResName = resName;
+    }
+
 }

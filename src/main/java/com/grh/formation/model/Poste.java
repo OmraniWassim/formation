@@ -23,5 +23,7 @@ public class Poste {
     @OneToMany(mappedBy = "poste")
     private List<Collaborateur> collaborateurs;
 
-
+    public Poste(String posteName) {
+        this.posteName = posteName;
+    }
 }

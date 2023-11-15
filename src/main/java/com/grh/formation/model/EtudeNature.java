@@ -24,5 +24,7 @@ public class EtudeNature {
     @OneToMany(mappedBy = "etudeNature")
     private List<Collaborateur> collaborateurs;
 
-
+    public EtudeNature(String nature) {
+        this.nature = nature;
+    }
 }

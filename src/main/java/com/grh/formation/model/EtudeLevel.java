@@ -1,5 +1,6 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,7 @@ public class EtudeLevel {
     @OneToMany(mappedBy = "etudeLevel")
     private List<Collaborateur> collaborateurs;
 
-
+    public EtudeLevel(String niveaux) {
+        this.niveaux = niveaux;
+    }
 }
