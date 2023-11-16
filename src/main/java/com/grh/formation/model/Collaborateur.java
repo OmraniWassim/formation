@@ -67,7 +67,9 @@ public class Collaborateur {
     private String commentaire;
 
 
-    private String piecesJointe;
+    @OneToOne
+    @JsonIgnoreProperties({"collaborateur"})
+    private ScannedDocument piecesJointe;
 
     @ManyToOne
     @JsonIgnoreProperties({"collaborateurs"})

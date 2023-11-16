@@ -39,7 +39,7 @@ public class FormationApplication {
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
 		return new CorsFilter();
 	}
-	/*@Bean
+	@Bean
 	CommandLineRunner run(EtudeLevelRepo etudeLevelRepo,
 	ContractTypeRepo contractTypeRepo,
 	DepartementRepo departementRepo,
@@ -97,7 +97,7 @@ public class FormationApplication {
 			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
 		};
 
-	}*/
+	}
 
 }
 
