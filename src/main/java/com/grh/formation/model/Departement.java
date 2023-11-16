@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Departement {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String DepName;
@@ -24,5 +24,8 @@ public class Departement {
     private List<Collaborateur> collaborateurs;
 
 
+    public Departement(String depName) {
+        DepName = depName;
+    }
 }
 

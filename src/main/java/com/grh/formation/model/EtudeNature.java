@@ -13,9 +13,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "ETUDENATURE")
 public class EtudeNature {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nature;
@@ -23,5 +24,7 @@ public class EtudeNature {
     @OneToMany(mappedBy = "etudeNature")
     private List<Collaborateur> collaborateurs;
 
-
+    public EtudeNature(String nature) {
+        this.nature = nature;
+    }
 }

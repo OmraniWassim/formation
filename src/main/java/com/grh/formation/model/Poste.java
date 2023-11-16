@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Poste {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String posteName;
@@ -23,5 +23,7 @@ public class Poste {
     @OneToMany(mappedBy = "poste")
     private List<Collaborateur> collaborateurs;
 
-
+    public Poste(String posteName) {
+        this.posteName = posteName;
+    }
 }

@@ -2,6 +2,7 @@ package com.grh.formation.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,49 +14,87 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "COLLABORATEUR")
 public class Collaborateur {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column(length = 8, nullable = false)
     private int cin;
+
+    @Column(nullable = false)
     private String nomComplet;
+
+    @Column(length = 13, nullable = false)
     private int numCompte;
+
+    @Column(length = 15, nullable = false)
     private int numSecuriteSociale;
+
+    @Column(nullable = false)
     private int numTelephone;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date dateNaissance;
+
+    @Column(nullable = false)
     private String adresse;
+
+    @Column(nullable = false, unique = true)
     private String email;
+
     private String certifications;
+
+    @Column(nullable = false)
     private int anneeExperience;
+
+    @Column(nullable = false)
     private int salaireBase;
+
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
     private Date dateDebutContrat;
+
+    @Column(nullable = false)
     private boolean recommandation;
+
+    @Column
     private String collaborateurRecommande;
+
+    @Column
     private String commentaire;
-    @OneToOne
-    @JoinColumn(name = "pieces_jointes_id")
-    private PiecesJointes piecesJointes;
+
+
+    private String piecesJointe;
+
     @ManyToOne
-    @JoinColumn(name = "etude_nature_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private EtudeNature etudeNature;
+
     @ManyToOne
-    @JoinColumn(name = "etude_level_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private EtudeLevel etudeLevel;
+
     @ManyToOne
-    @JoinColumn(name = "contract_type_id")
+    @JsonIgnoreProperties({"collaborateurs","piecesJointes"})
     private ContractType contractType;
+
     @ManyToOne
-    @JoinColumn(name = "salary_advantage_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private SalaryAdvantage salaryAdvantage;
+
     @ManyToOne
-    @JoinColumn(name = "poste_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private Poste poste;
+
     @ManyToOne
-    @JoinColumn(name = "departement_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private Departement departement;
+
     @ManyToOne
-    @JoinColumn(name = "responsable_id")
+    @JsonIgnoreProperties({"collaborateurs"})
     private Responsable responsable;
 
 

@@ -15,7 +15,7 @@ import java.util.List;
 @Entity
 public class Responsable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String ResName;
@@ -23,5 +23,8 @@ public class Responsable {
     @OneToMany(mappedBy = "responsable")
     private List<Collaborateur> collaborateurs;
 
-    // Constructors, getters, and setters
+    public Responsable(String resName) {
+        ResName = resName;
+    }
+
 }
