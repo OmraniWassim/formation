@@ -16,7 +16,8 @@ import java.util.List;
 @Table(name= "SALARYADVANTAGE")
 public class SalaryAdvantage {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="salaryAdvantage",sequenceName ="salaryAdvantage",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "salaryAdvantage")
     private Long id;
 
     private String advantage;

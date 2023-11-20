@@ -16,10 +16,14 @@ import java.util.stream.Collectors;
 @Table(name = "CONTRACTTYPE")
 public class ContractType {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="contract_type",sequenceName ="contract_type",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "contract_type")
     private Long id;
     @Column(unique = true)
     private String type;
+
+    @Column(nullable = false)
+    private int salaireBase;
 
     @ManyToMany(mappedBy = "contractTypes")
     private List<PiecesJointes> piecesJointes = new ArrayList<>();
@@ -28,7 +32,8 @@ public class ContractType {
     private List<Collaborateur> collaborateurs;
 
 
-    public ContractType( String type) {
+    public ContractType( String type,int salaireBase) {
+        this.salaireBase=salaireBase;
         this.type = type;
     }
 

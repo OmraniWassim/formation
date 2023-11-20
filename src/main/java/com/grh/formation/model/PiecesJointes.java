@@ -17,7 +17,8 @@ import java.util.List;
 @Table(name = "PIECESJOINTES")
 public class PiecesJointes {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="pieces_jointes",sequenceName ="pieces_jointes",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pieces_jointes")
     private Long id;
 
     @ManyToMany
@@ -29,8 +30,6 @@ public class PiecesJointes {
     private List<ContractType> contractTypes = new ArrayList<>();
 
     private String name;
-    private boolean obligatoire;
-    private boolean statut;
 
 
 

@@ -3,6 +3,7 @@ package com.grh.formation;
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
 import com.grh.formation.service.ContractTypeService;
+import com.grh.formation.service.PosteService;
 import org.apache.catalina.filters.CorsFilter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,35 +25,21 @@ public class FormationApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FormationApplication.class, args);
 	}
-	@Bean
-	public CorsFilter corsFilter() {
-		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
-		var corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList( "http://localhost:4200"));
-		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
-				"Accept", "Jwt-Token", "Authorization", "Origin, Accept", "X-Requested-With",
-				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
-		corsConfiguration.setExposedHeaders(Arrays.asList("Origin", "Content-Type", "Accept", "Jwt-Token", "Authorization",
-				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Filename"));
-		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
-		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
-		return new CorsFilter();
-	}
-	@Bean
+
+	/*@Bean
 	CommandLineRunner run(EtudeLevelRepo etudeLevelRepo,
-	ContractTypeRepo contractTypeRepo,
-	DepartementRepo departementRepo,
-	EtudeNatureRepo etudeNatureRepo,
-	PosteRepo posteRepo,
-	ResponsableRepo responsableRepo,
-	SalaryAdvantageRepo salaryAdvantageRepo, PiecesJointesRepo piecesJointesRepo,ContractTypeService contractTypeService) {
+						  ContractTypeRepo contractTypeRepo,
+						  DepartementRepo departementRepo,
+						  EtudeNatureRepo etudeNatureRepo,
+						  PosteRepo posteRepo,
+						  ResponsableRepo responsableRepo,
+						  SalaryAdvantageRepo salaryAdvantageRepo, PiecesJointesRepo piecesJointesRepo, PosteService posteService) {
 
 
 		return args -> {
-			ContractType cdi = contractTypeRepo.save(new ContractType("CDI"));
-			ContractType civp = contractTypeRepo.save(new ContractType("CIVP"));
-			ContractType cdd = contractTypeRepo.save(new ContractType("CDD"));
+			ContractType cdi = contractTypeRepo.save(new ContractType("CDI",1200));
+			ContractType civp = contractTypeRepo.save(new ContractType("CIVP",1000));
+			ContractType cdd = contractTypeRepo.save(new ContractType("CDD",1500));
 
 			// Save pieces jointes
 			PiecesJointes cin = piecesJointesRepo.save(new PiecesJointes("cin"));
@@ -84,9 +71,11 @@ public class FormationApplication {
 			etudeNatureRepo.save(new EtudeNature("Ressources Humaines"));
 
 			// Postes
-			posteRepo.save(new Poste("Développeur"));
-			posteRepo.save(new Poste("Analyste Financier"));
-			posteRepo.save(new Poste("Responsable RH"));
+
+			posteService.addPoste(new Poste("Développeur"),1);
+			posteService.addPoste(new Poste("Analyste Financier"),2);
+			posteService.addPoste(new Poste("Responsable RH"),3);
+
 
 			// Responsables
 			responsableRepo.save(new Responsable("John Doe"));
@@ -97,7 +86,7 @@ public class FormationApplication {
 			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
 		};
 
-	}
+	}*/
 
 }
 

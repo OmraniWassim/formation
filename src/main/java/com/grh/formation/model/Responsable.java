@@ -15,7 +15,8 @@ import java.util.List;
 @Entity
 public class Responsable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="reponsable",sequenceName ="reponsable",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "reponsable")
     private Long id;
 
     private String ResName;

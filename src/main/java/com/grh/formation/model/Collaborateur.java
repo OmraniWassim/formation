@@ -17,7 +17,8 @@ import java.util.Date;
 @Table(name = "COLLABORATEUR")
 public class Collaborateur {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="collab_sequence",sequenceName ="collab_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "collab_sequence")
     private Long id;
 
     @Column(length = 8, nullable = false)
@@ -27,10 +28,10 @@ public class Collaborateur {
     private String nomComplet;
 
     @Column(length = 13, nullable = false)
-    private int numCompte;
+    private long numCompte;
 
     @Column(length = 15, nullable = false)
-    private int numSecuriteSociale;
+    private long numSecuriteSociale;
 
     @Column(nullable = false)
     private int numTelephone;
@@ -49,9 +50,6 @@ public class Collaborateur {
 
     @Column(nullable = false)
     private int anneeExperience;
-
-    @Column(nullable = false)
-    private int salaireBase;
 
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)

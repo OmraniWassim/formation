@@ -1,5 +1,7 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,13 +17,19 @@ import java.util.List;
 @Entity
 public class Poste {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="poste_sequence",sequenceName ="poste_sequence",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "poste_sequence")
     private Long id;
 
     private String posteName;
 
     @OneToMany(mappedBy = "poste")
     private List<Collaborateur> collaborateurs;
+
+    @ManyToOne
+    @JoinColumn(name = "departement_id")
+    @JsonIgnore
+    private Departement departement;
 
     public Poste(String posteName) {
         this.posteName = posteName;

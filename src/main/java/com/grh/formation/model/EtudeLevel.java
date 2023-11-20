@@ -17,7 +17,8 @@ import java.util.List;
 @Table(name = "ETUDELEVEL")
 public class EtudeLevel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="etude_level",sequenceName ="etude_level",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "etude_level")
     private Long id;
 
     private String niveaux;

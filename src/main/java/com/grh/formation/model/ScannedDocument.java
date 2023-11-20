@@ -14,7 +14,8 @@ import javax.persistence.*;
 @Builder
 public class ScannedDocument {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(name="scannedDocument",sequenceName ="scannedDocument",allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "poste_sequence")
     private Long id;
     private String name;
     private String type;
