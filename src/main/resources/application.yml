@@ -4,6 +4,7 @@ spring:
     url: jdbc:oracle:thin:@localhost:1521/XE
     username: formation
     password: formation
+
   jpa:
     database-platform: org.hibernate.dialect.Oracle10gDialect
     hibernate:
