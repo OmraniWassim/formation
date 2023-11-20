@@ -13,6 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/collaborateurs")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CollaborateurController {
     private final CollaborateurService collaborateurService;
 
@@ -37,7 +38,7 @@ public class CollaborateurController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Collaborateur> updateCollaborateur(@PathVariable Long id, @RequestBody Collaborateur updatedCollaborateur) {
-        if (!collaborateurService.getCollaborateurById(id).isPresent()) {
+        if (collaborateurService.getCollaborateurById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
@@ -49,7 +50,7 @@ public class CollaborateurController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCollaborateur(@PathVariable Long id) {
-        if (!collaborateurService.getCollaborateurById(id).isPresent()) {
+        if (collaborateurService.getCollaborateurById(id).isEmpty()) {
             return ResponseEntity.notFound().build();
         }
 
