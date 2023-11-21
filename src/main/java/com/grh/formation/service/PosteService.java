@@ -7,6 +7,9 @@ import com.grh.formation.repo.PosteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Scanner;
+
 @Service
 @RequiredArgsConstructor
 public class PosteService {
@@ -18,4 +21,11 @@ public class PosteService {
         poste.setDepartement(departement);
         return  posteRepo.save(poste);
     }
+
+
+        public List<Poste> getAll(){
+            return  posteRepo.findAll();
+        }
+
+
 }

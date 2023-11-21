@@ -90,7 +90,7 @@ public class Collaborateur {
     private Poste poste;
 
     @ManyToOne
-    @JsonIgnoreProperties({"collaborateurs"})
+    @JsonIgnoreProperties({"collaborateurs","postes"})
     private Departement departement;
 
     @ManyToOne

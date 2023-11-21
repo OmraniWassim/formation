@@ -1,5 +1,6 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,9 @@ public class Departement {
     private Long id;
 
     private String DepName;
+    @JsonIgnoreProperties("departement")
+    @OneToMany(mappedBy = "departement")
+    private  List<Poste> postes;
 
     @OneToMany(mappedBy = "departement")
     private List<Collaborateur> collaborateurs;

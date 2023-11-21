@@ -2,18 +2,12 @@ package com.grh.formation;
 
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
-import com.grh.formation.service.ContractTypeService;
 import com.grh.formation.service.PosteService;
-import org.apache.catalina.filters.CorsFilter;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.yaml.snakeyaml.events.Event;
 
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -26,7 +20,7 @@ public class FormationApplication {
 		SpringApplication.run(FormationApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	CommandLineRunner run(EtudeLevelRepo etudeLevelRepo,
 						  ContractTypeRepo contractTypeRepo,
 						  DepartementRepo departementRepo,
@@ -74,7 +68,10 @@ public class FormationApplication {
 
 			posteService.addPoste(new Poste("Développeur"),1);
 			posteService.addPoste(new Poste("Analyste Financier"),2);
-			posteService.addPoste(new Poste("Responsable RH"),3);
+			posteService.addPoste(new Poste("RH"),3);
+			posteService.addPoste(new Poste("Repsonsable"),1);
+			posteService.addPoste(new Poste("Repsonsable"),2);
+			posteService.addPoste(new Poste("Repsonsable"),3);
 
 
 			// Responsables
@@ -86,7 +83,7 @@ public class FormationApplication {
 			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
 		};
 
-	}*/
+	}
 
 }
 
