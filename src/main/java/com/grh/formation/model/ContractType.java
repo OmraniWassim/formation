@@ -1,5 +1,7 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,8 +28,14 @@ public class ContractType {
     @ManyToMany(mappedBy = "contractTypes")
     private List<PiecesJointes> piecesJointes = new ArrayList<>();
 
+    @JsonIgnore
     @OneToMany(mappedBy = "contractType")
     private List<Collaborateur> collaborateurs;
+
+
+    @JsonIgnoreProperties("contractType")
+    @OneToMany(mappedBy = "contractType")
+    private List<SalaryAdvantage> salaryAdvantages;
 
 
     public ContractType( String type,int salaireBase) {

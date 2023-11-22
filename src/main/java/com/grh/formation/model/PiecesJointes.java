@@ -1,5 +1,6 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,7 @@ public class PiecesJointes {
     @SequenceGenerator(name="pieces_jointes",sequenceName ="pieces_jointes",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "pieces_jointes")
     private Long id;
-
+    @JsonIgnoreProperties("piecesJointes")
     @ManyToMany
     @JoinTable(
             name = "contract_type_pieces_jointes",

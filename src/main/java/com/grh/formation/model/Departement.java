@@ -20,17 +20,16 @@ public class Departement {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "departement_sequence")
     private Long id;
 
-    private String DepName;
+    private String depName;
     @JsonIgnoreProperties("departement")
     @OneToMany(mappedBy = "departement")
     private  List<Poste> postes;
 
-    @OneToMany(mappedBy = "departement")
-    private List<Collaborateur> collaborateurs;
+
 
 
     public Departement(String depName) {
-        DepName = depName;
+        this.depName = depName;
     }
 }
 

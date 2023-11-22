@@ -54,6 +54,9 @@ public class Collaborateur {
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date dateDebutContrat;
+    @Temporal(TemporalType.DATE)
+
+    private Date dateFinContrat;
 
     @Column(nullable = false)
     private boolean recommandation;
@@ -89,14 +92,25 @@ public class Collaborateur {
     @JsonIgnoreProperties({"collaborateurs"})
     private Poste poste;
 
-    @ManyToOne
-    @JsonIgnoreProperties({"collaborateurs","postes"})
-    private Departement departement;
 
     @ManyToOne
     @JsonIgnoreProperties({"collaborateurs"})
     private Responsable responsable;
 
-
-
+    public Collaborateur(int cin, String nomComplet, long numCompte, long numSecuriteSociale, int numTelephone, Date dateNaissance, String adresse, String email, String certifications, int anneeExperience, Date dateDebutContrat, boolean recommandation, String collaborateurRecommande, String commentaire) {
+        this.cin = cin;
+        this.nomComplet = nomComplet;
+        this.numCompte = numCompte;
+        this.numSecuriteSociale = numSecuriteSociale;
+        this.numTelephone = numTelephone;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.email = email;
+        this.certifications = certifications;
+        this.anneeExperience = anneeExperience;
+        this.dateDebutContrat = dateDebutContrat;
+        this.recommandation = recommandation;
+        this.collaborateurRecommande = collaborateurRecommande;
+        this.commentaire = commentaire;
+    }
 }

@@ -1,5 +1,6 @@
 package com.grh.formation.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,9 +22,13 @@ public class SalaryAdvantage {
     private Long id;
 
     private String advantage;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "salaryAdvantage")
     private List<Collaborateur> collaborateurs;
+
+    @ManyToOne
+    @JoinColumn(name = "contract_type_id")
+    private ContractType contractType;
 
     public SalaryAdvantage(String advantage) {
         this.advantage = advantage;

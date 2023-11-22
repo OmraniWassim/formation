@@ -30,23 +30,55 @@ public class CollaborateurController {
         return collaborateur.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<Collaborateur> createCollaborateur(@RequestBody Collaborateur collaborateur) {
-        Collaborateur savedCollaborateur = collaborateurService.saveCollaborateur(collaborateur);
+    @PostMapping("/add/{etudeNatureId}/{etudeLevelId}/{contractTypeId}/{salaryAdvantageId}/{posteId}/{responsableId}")
+    public ResponseEntity<Collaborateur> createCollaborateur(
+            @RequestBody Collaborateur collaborateur,
+            @PathVariable Long etudeNatureId,
+            @PathVariable Long etudeLevelId,
+            @PathVariable Long contractTypeId,
+            @PathVariable Long salaryAdvantageId,
+            @PathVariable Long posteId,
+            @PathVariable Long responsableId) {
+
+        Collaborateur savedCollaborateur = collaborateurService.saveCollaborateur(
+                collaborateur,
+                etudeNatureId,
+                etudeLevelId,
+                contractTypeId,
+                salaryAdvantageId,
+                posteId,
+                responsableId
+        );
+
         return ResponseEntity.status(HttpStatus.CREATED).body(savedCollaborateur);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Collaborateur> updateCollaborateur(@PathVariable Long id, @RequestBody Collaborateur updatedCollaborateur) {
-        if (collaborateurService.getCollaborateurById(id).isEmpty()) {
-            return ResponseEntity.notFound().build();
-        }
 
-        updatedCollaborateur.setId(id);
-        Collaborateur savedCollaborateur = collaborateurService.saveCollaborateur(updatedCollaborateur);
+    @PutMapping("/{id}/update/{etudeNatureId}/{etudeLevelId}/{contractTypeId}/{salaryAdvantageId}/{posteId}/{responsableId}")
+    public ResponseEntity<Collaborateur> updateCollaborateur(
+            @PathVariable Long id,
+            @PathVariable Long etudeNatureId,
+            @PathVariable Long etudeLevelId,
+            @PathVariable Long contractTypeId,
+            @PathVariable Long salaryAdvantageId,
+            @PathVariable Long posteId,
+            @PathVariable Long responsableId,
+            @RequestBody Collaborateur updatedCollaborateur) {
+
+        Collaborateur savedCollaborateur = collaborateurService.updateCollaborateur(
+                id,
+                etudeNatureId,
+                etudeLevelId,
+                contractTypeId,
+                salaryAdvantageId,
+                posteId,
+                responsableId,
+                updatedCollaborateur
+        );
 
         return ResponseEntity.ok(savedCollaborateur);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCollaborateur(@PathVariable Long id) {

@@ -1,6 +1,7 @@
 package com.grh.formation.repo;
 
 import com.grh.formation.model.ContractType;
+import com.grh.formation.model.Poste;
 import com.sun.istack.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,4 +13,5 @@ public interface ContractTypeRepo extends JpaRepository<ContractType,Long> {
     Optional<ContractType> findById(@NotNull Long id);
 
     ContractType findByType(String contractTypeName);
+
 }

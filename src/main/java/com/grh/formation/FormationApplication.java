@@ -2,12 +2,15 @@ package com.grh.formation;
 
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
+import com.grh.formation.service.CollaborateurService;
 import com.grh.formation.service.PosteService;
+import com.grh.formation.service.SalaryAdvantageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Date;
 import java.util.List;
 
 @SpringBootApplication
@@ -21,32 +24,40 @@ public class FormationApplication {
 	}
 
 	@Bean
-	CommandLineRunner run(EtudeLevelRepo etudeLevelRepo,
+	CommandLineRunner run(SalaryAdvantageService salaryAdvantageService,EtudeLevelRepo etudeLevelRepo,
 						  ContractTypeRepo contractTypeRepo,
 						  DepartementRepo departementRepo,
 						  EtudeNatureRepo etudeNatureRepo,
-						  PosteRepo posteRepo,
 						  ResponsableRepo responsableRepo,
-						  SalaryAdvantageRepo salaryAdvantageRepo, PiecesJointesRepo piecesJointesRepo, PosteService posteService) {
+						  SalaryAdvantageRepo salaryAdvantageRepo, PiecesJointesRepo piecesJointesRepo, PosteService posteService, CollaborateurService collaborateurService) {
 
 
 		return args -> {
-			ContractType cdi = contractTypeRepo.save(new ContractType("CDI",1200));
 			ContractType civp = contractTypeRepo.save(new ContractType("CIVP",1000));
+			ContractType cdi = contractTypeRepo.save(new ContractType("CDI",1200));
 			ContractType cdd = contractTypeRepo.save(new ContractType("CDD",1500));
 
-			// Save pieces jointes
 			PiecesJointes cin = piecesJointesRepo.save(new PiecesJointes("cin"));
 			PiecesJointes passport = piecesJointesRepo.save(new PiecesJointes("Passport"));
 			PiecesJointes resume = piecesJointesRepo.save(new PiecesJointes("Resume"));
 			PiecesJointes diplome = piecesJointesRepo.save(new PiecesJointes("Diplome"));
 
-
-
-
-
-
 			contractTypeRepo.saveAll(List.of(cdi, civp, cdd));
+
+			// Salary Advantages
+			salaryAdvantageRepo.save(new SalaryAdvantage("Bonus"));
+			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CIVP"),1);
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDI"),2);
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Health Insurance"),2);
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDD"),3);
+
+
+			// Salary Advantages
+			salaryAdvantageRepo.save(new SalaryAdvantage("Bonus"));
+			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
+
+
 
 			// Etude Levels
 			etudeLevelRepo.save(new EtudeLevel("BAC"));
@@ -69,18 +80,87 @@ public class FormationApplication {
 			posteService.addPoste(new Poste("Développeur"),1);
 			posteService.addPoste(new Poste("Analyste Financier"),2);
 			posteService.addPoste(new Poste("RH"),3);
-			posteService.addPoste(new Poste("Repsonsable"),1);
-			posteService.addPoste(new Poste("Repsonsable"),2);
-			posteService.addPoste(new Poste("Repsonsable"),3);
+			posteService.addPoste(new Poste("Responsable"),1);
+			posteService.addPoste(new Poste("Responsable"),2);
+			posteService.addPoste(new Poste("Responsable"),3);
 
 
 			// Responsables
 			responsableRepo.save(new Responsable("John Doe"));
 			responsableRepo.save(new Responsable("Jane Smith"));
 
-			// Salary Advantages
-			salaryAdvantageRepo.save(new SalaryAdvantage("Bonus"));
-			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
+
+
+			//add collabs
+			collaborateurService.saveCollaborateur(new Collaborateur(
+					12345678,
+					"John Doe",
+					987654321,
+					1234567890123L,
+					123456789,
+					new Date(),
+					"123 Main St",
+					"john.doe@example.com",
+					"Java Certification",
+					5,
+					new Date(),
+					true,
+					"Recommender",
+					"Great employee"
+			),1L,1L,1L,1L,1L,1L);
+			// Add more instances of Collaborateur with different data and related entity IDs
+			collaborateurService.saveCollaborateur(new Collaborateur(
+					87654321,
+					"Jane Doe",
+					123456789,
+					9876543210123L,
+					987654321,
+					new Date(),
+					"456 Oak St",
+					"jane.doe@example.com",
+					"Python Certification",
+					3,
+					new Date(),
+					false,
+					null,
+					"Good employee"
+			), 1L, 1L, 1L, 1L, 1L, 1L);
+
+			collaborateurService.saveCollaborateur(new Collaborateur(
+					55555555,
+					"Alice Wonderland",
+					987654321,
+					9876543210123L,
+					123456789,
+					new Date(),
+					"789 Wonderland Ave",
+					"alice@example.com",
+					"React Certification",
+					2,
+					new Date(),
+					true,
+					"John Doe",
+					"Exceptional employee"
+			), 2L, 2L, 2L, 1L, 2L, 1L);
+
+			collaborateurService.saveCollaborateur(new Collaborateur(
+					99999999,
+					"Bob Builder",
+					123456789,
+					1234567890123L,
+					555555555,
+					new Date(),
+					"456 Construction St",
+					"bob@example.com",
+					"Architecture Certification",
+					8,
+					new Date(),
+					false,
+					null,
+					"Skilled builder"
+			), 3L, 3L, 3L, 1L, 3L, 1L);
+
+
 		};
 
 	}

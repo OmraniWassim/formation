@@ -31,6 +31,14 @@ public class ContractTypeService {
                 .map(PiecesJointes::getName)
                 .collect(Collectors.toList());
     }
+    public List<ContractType> getAll() {
+        return contractTypeRepo.findAll();
+    }
+
 
 
 }
+
+
+
+
