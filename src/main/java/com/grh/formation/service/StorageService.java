@@ -2,7 +2,9 @@ package com.grh.formation.service;
 
 
 
+import com.grh.formation.model.Collaborateur;
 import com.grh.formation.model.ScannedDocument;
+import com.grh.formation.repo.CollaborateurRepo;
 import com.grh.formation.repo.ScannedDocumentRepo;
 import com.grh.formation.util.PdfUtils;
 import lombok.RequiredArgsConstructor;
@@ -18,21 +20,27 @@ public class StorageService {
 
 
     private final ScannedDocumentRepo repository;
+    private final CollaborateurRepo collaborateurRepo;
 
-    public String uploadPdf(MultipartFile file) throws IOException {
+    public String uploadPdf(MultipartFile file,int cin) throws IOException {
 
         ScannedDocument pdfDAta = repository.save(ScannedDocument.builder()
                 .name(file.getOriginalFilename())
                 .type(file.getContentType())
                 .pdfData(PdfUtils.compressPdf(file.getBytes())).build());
+
         if (pdfDAta != null) {
+            Collaborateur collaborateur=collaborateurRepo.findByCin(cin);
+            collaborateur.setPiecesJointe(pdfDAta);
+            collaborateurRepo.save(collaborateur);
             return "file uploaded successfully : " + file.getOriginalFilename();
+
         }
         return null;
     }
 
-    public byte[] downloadPdf(String fileName){
-        Optional<ScannedDocument> dbScannedDocument = repository.findByName(fileName);
+    public byte[] downloadPdf(long fileId){
+        Optional<ScannedDocument> dbScannedDocument = repository.findById(fileId);
         byte[] pdf=PdfUtils.decompressPdf(dbScannedDocument.get().getPdfData());
         return pdf;
     }

@@ -20,15 +20,15 @@ public class ScannedDocumentController {
     private final CollaborateurService collaborateurService;
 
     @PostMapping("/add")
-    public ResponseEntity<?> uploadImage(@RequestParam("pdf") MultipartFile file) throws IOException {
-        String uploadImage = service.uploadPdf(file);
+    public ResponseEntity<?> uploadImage(@RequestParam("pdf") MultipartFile file,@RequestParam("cin") int cin) throws IOException {
+        String uploadImage = service.uploadPdf(file,cin);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(uploadImage);
     }
 
-    @GetMapping("/get/{fileName}")
-    public ResponseEntity<?> downloadImage(@PathVariable String fileName){
-        byte[] imageData=service.downloadPdf(fileName);
+    @GetMapping("/get/{fileId}")
+    public ResponseEntity<?> downloadImage(@PathVariable long fileId){
+        byte[] imageData=service.downloadPdf(fileId);
         return ResponseEntity.status(HttpStatus.OK)
                 .contentType(MediaType.valueOf("application/pdf"))
                 .body(imageData);

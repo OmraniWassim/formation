@@ -11,8 +11,8 @@ public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
     @NotNull
     Optional<Collaborateur> findById(@NotNull Long id);
 
+    Collaborateur findByCin(int cin);
 
 
-
-
+    ;
 }

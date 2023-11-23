@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 @SpringBootApplication
 public class FormationApplication {
@@ -20,6 +21,7 @@ public class FormationApplication {
 
 
 	public static void main(String[] args) {
+		TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
 		SpringApplication.run(FormationApplication.class, args);
 	}
 
