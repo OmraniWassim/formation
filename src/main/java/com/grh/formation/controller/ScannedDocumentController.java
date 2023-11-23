@@ -1,7 +1,5 @@
 package com.grh.formation.controller;
 
-import com.grh.formation.model.DocumentAssignmentRequest;
-import com.grh.formation.service.CollaborateurService;
 import com.grh.formation.service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -17,13 +15,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ScannedDocumentController {
     private final StorageService service;
-    private final CollaborateurService collaborateurService;
 
     @PostMapping("/add")
     public ResponseEntity<?> uploadImage(@RequestParam("pdf") MultipartFile file,@RequestParam("cin") int cin) throws IOException {
         String uploadImage = service.uploadPdf(file,cin);
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(uploadImage);
+        return ResponseEntity.ok(uploadImage);
     }
 
     @GetMapping("/get/{fileId}")
@@ -34,14 +30,6 @@ public class ScannedDocumentController {
                 .body(imageData);
 
     }
-    @PostMapping("/assign-document")
-    public ResponseEntity<String> assignDocumentToCollaborateur(@RequestBody DocumentAssignmentRequest request) {
-        try {
-            collaborateurService.assignDocumentToCollab(request.getDocumentId(), request.getCollaborateurId());
-            return new ResponseEntity<>("Document assigned to collaborateur successfully", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>("Failed to assign document to collaborateur", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+
 
 }

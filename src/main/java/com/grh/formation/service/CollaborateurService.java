@@ -13,7 +13,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CollaborateurService {
     private final CollaborateurRepo collaborateurRepo;
-    private final ScannedDocumentRepo scannedDocumentRepo;
     private final EtudeNatureRepo etudeNatureRepo;
     private final EtudeLevelRepo etudeLevelRepo;
     private final ContractTypeRepo contractTypeRepo;
@@ -125,17 +124,8 @@ public class CollaborateurService {
     }
 
 
-    public void assignDocumentToCollab(long idDoc,long idCollab){
-        ScannedDocument scannedDocument=scannedDocumentRepo.findById(idDoc).orElse(null);
-        Collaborateur collaborateur=collaborateurRepo.findById(idCollab).orElse(null);
-        assert collaborateur != null;
-        assert scannedDocument != null;
-        collaborateur.setPiecesJointe(scannedDocument);
-        scannedDocument.setCollaborateur(collaborateur);
-        collaborateurRepo.save(collaborateur);
-        scannedDocumentRepo.save(scannedDocument);
 
 
-    }
+
 }
 

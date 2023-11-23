@@ -21,7 +21,7 @@ public class Collaborateur {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "collab_sequence")
     private Long id;
 
-    @Column(length = 8, nullable = false)
+    @Column(length = 8, nullable = false,unique = true)
     private int cin;
 
     @Column(nullable = false)

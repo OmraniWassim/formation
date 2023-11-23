@@ -8,6 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
+    boolean existsByCin(int cin);
+
+    boolean existsByNumCompte(long numCompte);
+
+    boolean existsByNumTelephone(int numTelephone);
+
+    boolean existsByEmail(String email);
+
+    boolean existsByNumSecuriteSociale(long numSecuriteSociale);
     @NotNull
     Optional<Collaborateur> findById(@NotNull Long id);
 
