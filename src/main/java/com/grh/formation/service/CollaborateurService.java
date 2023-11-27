@@ -3,7 +3,9 @@ package com.grh.formation.service;
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
@@ -22,6 +24,7 @@ public class CollaborateurService {
     private final SalaryAdvantageRepo salaryAdvantageRepo;
     private final PosteRepo posteRepo;
     private final ResponsableRepo responsableRepo;
+    private final ResponsableService responsableService;
 
 
 
@@ -61,22 +64,25 @@ public class CollaborateurService {
 
 
 
-
-        Responsable responsable = responsableRepo.findById(responsableId)
-                .orElseThrow(() -> new EntityNotFoundException("Responsable not found with id: " + responsableId));
-
+        if(responsableId!=0) {
+            Responsable responsable = responsableRepo.findById(responsableId)
+                    .orElseThrow(() -> new EntityNotFoundException("Responsable not found with id: " + responsableId));
+            collaborateur.setResponsable(responsable);
+        }
         if(collaborateurRepo.existsByCin(collaborateur.getCin())) throw new RuntimeException("CIN deja existe");
         if(collaborateurRepo.existsByEmail(collaborateur.getEmail())) throw  new RuntimeException("Email deja existe");
         if(collaborateurRepo.existsByNumCompte(collaborateur.getNumCompte())) throw  new RuntimeException("Num de compte deja existe");
-        if(collaborateurRepo.existsByNumSecuriteSociale(collaborateur.getNumSecuriteSociale())) throw  new RuntimeException("Num securite sociale deja existe");
-
-
+        if(collaborateur.getNumSecuriteSociale()!=0 && collaborateurRepo.existsByNumSecuriteSociale(collaborateur.getNumSecuriteSociale())) throw  new RuntimeException("Num securite sociale deja existe");
+        if(responsableId==0){
+            collaborateur.setResponsable(null);
+            responsableService.ajouterResponsable(collaborateur.getNomComplet(),collaborateur);
+        }
         collaborateur.setEtudeNature(etudeNature);
         collaborateur.setEtudeLevel(etudeLevel);
         collaborateur.setContractType(contractType);
         collaborateur.setSalaryAdvantage(salaryAdvantage);
         collaborateur.setPoste(poste);
-        collaborateur.setResponsable(responsable);
+
 
         return collaborateurRepo.save(collaborateur);
     }
@@ -161,7 +167,7 @@ public class CollaborateurService {
             Date birthdate = collaborateur.getDateNaissance();
 
             if (birthdate != null) {
-                int age = currentYear - birthdate.getYear();
+                int age = currentYear - birthdate.getYear()-1900;
                 agePyramid.put(age, agePyramid.getOrDefault(age, 0L) + 1);
             }
         }

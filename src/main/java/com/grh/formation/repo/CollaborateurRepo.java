@@ -4,9 +4,11 @@ import com.grh.formation.model.Collaborateur;
 import com.sun.istack.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
+    List<Collaborateur> findByPoste_PosteName(String posteName);
     boolean existsByCin(int cin);
 
     boolean existsByNumCompte(long numCompte);

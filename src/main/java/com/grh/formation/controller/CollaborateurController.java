@@ -51,7 +51,7 @@ public class CollaborateurController {
                 responsableId
         );
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCollaborateur);
+        return new ResponseEntity<>(savedCollaborateur, HttpStatus.CREATED);
     }
 
 
@@ -77,7 +77,7 @@ public class CollaborateurController {
                 updatedCollaborateur
         );
 
-        return ResponseEntity.ok(savedCollaborateur);
+        return new ResponseEntity<>(savedCollaborateur, HttpStatus.CREATED);
     }
 
 
