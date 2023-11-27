@@ -47,17 +47,13 @@ public class FormationApplication {
 			contractTypeRepo.saveAll(List.of(cdi, civp, cdd));
 
 			// Salary Advantages
-			salaryAdvantageRepo.save(new SalaryAdvantage("Bonus"));
-			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
-			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CIVP"),1);
-			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDI"),2);
-			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Health Insurance"),2);
-			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDD"),3);
+
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CIVP",10),1);
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDI",20),2);
+			salaryAdvantageService.addSalaryAdvantage(new SalaryAdvantage("Bonus CDD",30),3);
 
 
-			// Salary Advantages
-			salaryAdvantageRepo.save(new SalaryAdvantage("Bonus"));
-			salaryAdvantageRepo.save(new SalaryAdvantage("Health Insurance"));
+
 
 
 
@@ -100,12 +96,13 @@ public class FormationApplication {
 					987654321,
 					1234567890123L,
 					123456789,
-					new Date(),
+					new Date(2010,5,10),
 					"123 Main St",
 					"john.doe@example.com",
 					"Java Certification",
 					5,
 					new Date(),
+					3000,
 					true,
 					"Recommender",
 					"Great employee"
@@ -117,12 +114,13 @@ public class FormationApplication {
 					123456789,
 					9876543210123L,
 					987654321,
-					new Date(),
+					new Date(1990,5,5),
 					"456 Oak St",
 					"jane.doe@example.com",
 					"Python Certification",
 					3,
 					new Date(),
+					1500,
 					false,
 					null,
 					"Good employee"
@@ -131,15 +129,16 @@ public class FormationApplication {
 			collaborateurService.saveCollaborateur(new Collaborateur(
 					55555555,
 					"Alice Wonderland",
-					987654321,
-					9876543210123L,
+					917154321,
+					9855543210123L,
 					123456789,
-					new Date(),
+					new Date(2001,12,20),
 					"789 Wonderland Ave",
 					"alice@example.com",
 					"React Certification",
 					2,
 					new Date(),
+					2000,
 					true,
 					"John Doe",
 					"Exceptional employee"
@@ -148,15 +147,16 @@ public class FormationApplication {
 			collaborateurService.saveCollaborateur(new Collaborateur(
 					99999999,
 					"Bob Builder",
-					123456789,
-					1234567890123L,
+					548756512,
+					1231267890123L,
 					555555555,
-					new Date(),
+					new Date(1950,12,20),
 					"456 Construction St",
 					"bob@example.com",
 					"Architecture Certification",
 					8,
 					new Date(),
+					1500,
 					false,
 					null,
 					"Skilled builder"

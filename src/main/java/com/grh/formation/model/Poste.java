@@ -27,8 +27,7 @@ public class Poste {
     private List<Collaborateur> collaborateurs;
 
     @ManyToOne
-    @JoinColumn(name = "departement_id")
-    @JsonIgnore
+    @JsonIgnoreProperties({"postes"})
     private Departement departement;
 
     public Poste(String posteName) {

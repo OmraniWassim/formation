@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -54,25 +55,25 @@ public class CollaborateurController {
     }
 
 
-    @PutMapping("/{id}/update/{etudeNatureId}/{etudeLevelId}/{contractTypeId}/{salaryAdvantageId}/{posteId}/{responsableId}")
+    @PutMapping("/update/{etudeNatureId}/{etudeLevelId}/{contractTypeId}/{salaryAdvantageId}/{posteId}/{responsableId}/{withDocument}")
     public ResponseEntity<Collaborateur> updateCollaborateur(
-            @PathVariable Long id,
             @PathVariable Long etudeNatureId,
             @PathVariable Long etudeLevelId,
             @PathVariable Long contractTypeId,
             @PathVariable Long salaryAdvantageId,
             @PathVariable Long posteId,
             @PathVariable Long responsableId,
+            @PathVariable boolean withDocument,
             @RequestBody Collaborateur updatedCollaborateur) {
 
         Collaborateur savedCollaborateur = collaborateurService.updateCollaborateur(
-                id,
                 etudeNatureId,
                 etudeLevelId,
                 contractTypeId,
                 salaryAdvantageId,
                 posteId,
                 responsableId,
+                withDocument,
                 updatedCollaborateur
         );
 
@@ -88,6 +89,20 @@ public class CollaborateurController {
 
         collaborateurService.deleteCollaborateur(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/calculateMassSalariale")
+    public double calculateMassSalariale() {
+        return collaborateurService.calculateMassSalariale();
+    }
+
+    @GetMapping("/calculateAgePyramid")
+    public Map<Integer, Long> calculateAgePyramid() {
+        return collaborateurService.calculateAgePyramid();
+    }
+
+    @GetMapping("/calculateAverageSalary")
+    public double calculateAverageSalary() {
+        return collaborateurService.calculateAverageSalary();
     }
 }
 

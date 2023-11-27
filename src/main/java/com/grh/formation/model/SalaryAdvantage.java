@@ -20,8 +20,8 @@ public class SalaryAdvantage {
     @SequenceGenerator(name="salaryAdvantage",sequenceName ="salaryAdvantage",allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "salaryAdvantage")
     private Long id;
-
     private String advantage;
+    private double percentage;
     @JsonIgnore
     @OneToMany(mappedBy = "salaryAdvantage")
     private List<Collaborateur> collaborateurs;
@@ -30,7 +30,8 @@ public class SalaryAdvantage {
     @JoinColumn(name = "contract_type_id")
     private ContractType contractType;
 
-    public SalaryAdvantage(String advantage) {
+    public SalaryAdvantage(String advantage,double percentage) {
         this.advantage = advantage;
+        this.percentage=percentage;
     }
 }

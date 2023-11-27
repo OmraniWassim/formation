@@ -51,6 +51,9 @@ public class Collaborateur {
     @Column(nullable = false)
     private int anneeExperience;
 
+    @Column(nullable = false)
+    private double salaireDeBase;
+
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date dateDebutContrat;
@@ -97,7 +100,7 @@ public class Collaborateur {
     @JsonIgnoreProperties({"collaborateurs"})
     private Responsable responsable;
 
-    public Collaborateur(int cin, String nomComplet, long numCompte, long numSecuriteSociale, int numTelephone, Date dateNaissance, String adresse, String email, String certifications, int anneeExperience, Date dateDebutContrat, boolean recommandation, String collaborateurRecommande, String commentaire) {
+    public Collaborateur(int cin, String nomComplet, long numCompte, long numSecuriteSociale, int numTelephone, Date dateNaissance, String adresse, String email, String certifications, int anneeExperience, Date dateDebutContrat, double salaireDeBase,boolean recommandation, String collaborateurRecommande, String commentaire) {
         this.cin = cin;
         this.nomComplet = nomComplet;
         this.numCompte = numCompte;
@@ -112,5 +115,19 @@ public class Collaborateur {
         this.recommandation = recommandation;
         this.collaborateurRecommande = collaborateurRecommande;
         this.commentaire = commentaire;
+        this.salaireDeBase=salaireDeBase;
     }
+
+    public double getSalaireBrute() {
+        double baseSalary = this.salaireDeBase;
+
+        double bonusPercentage = this.getSalaryAdvantage().getPercentage(); // Update with the correct field
+
+        double bonusAmount = baseSalary * (bonusPercentage / 100.0);
+
+        return baseSalary + bonusAmount;
+    }
+
+
+
 }

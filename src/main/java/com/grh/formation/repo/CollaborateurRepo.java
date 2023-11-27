@@ -4,7 +4,6 @@ import com.grh.formation.model.Collaborateur;
 import com.sun.istack.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
@@ -21,6 +20,8 @@ public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
     Optional<Collaborateur> findById(@NotNull Long id);
 
     Collaborateur findByCin(int cin);
+
+
 
 
     ;
