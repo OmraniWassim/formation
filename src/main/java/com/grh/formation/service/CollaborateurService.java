@@ -61,6 +61,7 @@ public class CollaborateurService {
 
 
 
+
         Responsable responsable = responsableRepo.findById(responsableId)
                 .orElseThrow(() -> new EntityNotFoundException("Responsable not found with id: " + responsableId));
 
