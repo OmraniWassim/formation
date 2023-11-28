@@ -40,6 +40,10 @@ public class Collaborateur {
     @Column(nullable = false)
     private Date dateNaissance;
 
+    private String postName;
+
+    private String type;
+
     @Column(nullable = false)
     private String adresse;
 
@@ -116,6 +120,7 @@ public class Collaborateur {
         this.collaborateurRecommande = collaborateurRecommande;
         this.commentaire = commentaire;
         this.salaireDeBase=salaireDeBase;
+
     }
 
     public double getSalaireBrute() {

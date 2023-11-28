@@ -12,9 +12,9 @@ public class GlobalExceptionHandler {
 
 
 
-   /* @ExceptionHandler(RuntimeException.class)
+    @ExceptionHandler(RuntimeException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseEntity<Object> handleRuntimeException(RuntimeException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
-    }*/
+    }
 }

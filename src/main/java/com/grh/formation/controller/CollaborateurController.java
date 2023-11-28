@@ -2,11 +2,14 @@ package com.grh.formation.controller;
 
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.service.CollaborateurService;
+import com.grh.formation.service.ReportService;
 import lombok.RequiredArgsConstructor;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -17,9 +20,13 @@ import java.util.Optional;
 @CrossOrigin(origins = "http://localhost:4200")
 public class CollaborateurController {
     private final CollaborateurService collaborateurService;
+    private final ReportService service;
 
 
-
+    @GetMapping("/report")
+    public ResponseEntity<byte[]> generateReport() throws FileNotFoundException, JRException {
+        return service.exportReport();
+    }
     @GetMapping("/all")
     public List<Collaborateur> getAllCollaborateurs() {
         return collaborateurService.getAllCollaborateurs();

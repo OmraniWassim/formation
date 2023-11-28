@@ -82,7 +82,8 @@ public class CollaborateurService {
         collaborateur.setContractType(contractType);
         collaborateur.setSalaryAdvantage(salaryAdvantage);
         collaborateur.setPoste(poste);
-
+        collaborateur.setPostName(poste.getPosteName());
+        collaborateur.setType(contractType.getType());
 
         return collaborateurRepo.save(collaborateur);
     }
