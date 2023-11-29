@@ -25,13 +25,13 @@ public class FormationApplication {
 		SpringApplication.run(FormationApplication.class, args);
 	}
 
-	/*@Bean
+	@Bean
 	CommandLineRunner run(SalaryAdvantageService salaryAdvantageService,EtudeLevelRepo etudeLevelRepo,
 						  ContractTypeRepo contractTypeRepo,
 						  DepartementRepo departementRepo,
 						  EtudeNatureRepo etudeNatureRepo,
 						  ResponsableRepo responsableRepo,
-						  SalaryAdvantageRepo salaryAdvantageRepo, PiecesJointesRepo piecesJointesRepo, PosteService posteService, CollaborateurService collaborateurService) {
+						  PiecesJointesRepo piecesJointesRepo, PosteService posteService, CollaborateurService collaborateurService) {
 
 
 		return args -> {
@@ -165,7 +165,7 @@ public class FormationApplication {
 
 		};
 
-	}*/
+	}
 
 }
 

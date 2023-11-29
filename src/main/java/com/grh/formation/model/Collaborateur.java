@@ -58,6 +58,8 @@ public class Collaborateur {
     @Column(nullable = false)
     private double salaireDeBase;
 
+    private double salaireBrute;
+
     @Temporal(TemporalType.DATE)
     @Column(nullable = false)
     private Date dateDebutContrat;
@@ -123,14 +125,14 @@ public class Collaborateur {
 
     }
 
-    public double getSalaireBrute() {
+    public void setSalaireBrute() {
         double baseSalary = this.salaireDeBase;
 
         double bonusPercentage = this.getSalaryAdvantage().getPercentage(); // Update with the correct field
 
         double bonusAmount = baseSalary * (bonusPercentage / 100.0);
 
-        return baseSalary + bonusAmount;
+        this.salaireBrute= baseSalary + bonusAmount;
     }
 
 

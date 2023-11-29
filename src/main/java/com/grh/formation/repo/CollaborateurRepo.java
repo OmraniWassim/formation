@@ -3,18 +3,17 @@ package com.grh.formation.repo;
 import com.grh.formation.model.Collaborateur;
 import com.sun.istack.NotNull;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
-    List<Collaborateur> findByPoste_PosteName(String posteName);
     boolean existsByCin(int cin);
 
     boolean existsByNumCompte(long numCompte);
-
-    boolean existsByNumTelephone(int numTelephone);
-
     boolean existsByEmail(String email);
 
     boolean existsByNumSecuriteSociale(long numSecuriteSociale);
@@ -23,8 +22,11 @@ public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
 
     Collaborateur findByCin(int cin);
 
+    @Query(nativeQuery = true, value = "SELECT calculate_mass_salariale()")
+    Double calculateMassSalariale();
 
 
 
-    ;
+
+
 }

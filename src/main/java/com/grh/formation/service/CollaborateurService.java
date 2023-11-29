@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.Date;
 import java.util.stream.Collectors;
 
 @Service
@@ -84,6 +86,7 @@ public class CollaborateurService {
         collaborateur.setPoste(poste);
         collaborateur.setPostName(poste.getPosteName());
         collaborateur.setType(contractType.getType());
+        collaborateur.setSalaireBrute();
 
         return collaborateurRepo.save(collaborateur);
     }
@@ -135,6 +138,9 @@ public class CollaborateurService {
             updatedCollaborateur.setSalaryAdvantage(salaryAdvantage);
             updatedCollaborateur.setPoste(poste);
             updatedCollaborateur.setResponsable(responsable);
+            updatedCollaborateur.setPostName(poste.getPosteName());
+            updatedCollaborateur.setType(contractType.getType());
+            updatedCollaborateur.setSalaireBrute();
         }else{
             updatedCollaborateur.setId(updatedCollaborateur.getId());
             updatedCollaborateur.setEtudeNature(etudeNature);
@@ -143,6 +149,9 @@ public class CollaborateurService {
             updatedCollaborateur.setSalaryAdvantage(salaryAdvantage);
             updatedCollaborateur.setPoste(poste);
             updatedCollaborateur.setResponsable(responsable);
+            updatedCollaborateur.setPostName(poste.getPosteName());
+            updatedCollaborateur.setType(contractType.getType());
+            updatedCollaborateur.setSalaireBrute();
             updatedCollaborateur.setPiecesJointe(collaborateurRepo.findById(updatedCollaborateur.getId()).get().getPiecesJointe());
         }
 
@@ -150,16 +159,23 @@ public class CollaborateurService {
         return collaborateurRepo.save(updatedCollaborateur);
     }
 
-    public double calculateMassSalariale() {
+    public static double calculateMassSalariale() {
         double massSalariale = 0.0;
 
-        for (Collaborateur collaborateur : collaborateurRepo.findAll()) {
-            double salary = collaborateur.getSalaireBrute();
-            massSalariale += salary;
+        try (Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "formation", "formation")) {
+            try (CallableStatement statement = connection.prepareCall("{ ? = call calculate_mass_salariale }")) {
+                statement.registerOutParameter(1, java.sql.Types.NUMERIC);
+                statement.execute();
+                massSalariale = statement.getDouble(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return massSalariale;
     }
+
+
     public Map<Integer, Long> calculateAgePyramid() {
         Map<Integer, Long> agePyramid = new HashMap<>();
         int currentYear = Year.now().getValue();
@@ -175,6 +191,7 @@ public class CollaborateurService {
 
         return agePyramid;
     }
+
 
 
 
