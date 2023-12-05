@@ -1,5 +1,6 @@
 package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.SalaryAdvantageService;
 import com.grh.formation.model.ContractType;
 import com.grh.formation.model.SalaryAdvantage;
 import com.grh.formation.repo.ContractTypeRepo;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class SalaryAdvantageServiceImpl implements com.grh.formation.Service.SalaryAdvantageService {
+public class SalaryAdvantageServiceImpl implements SalaryAdvantageService {
 
     private  final SalaryAdvantageRepo salaryAdvantageRepo;
     private  final ContractTypeRepo contractTypeRepo;

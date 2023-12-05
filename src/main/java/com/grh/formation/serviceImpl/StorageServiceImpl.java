@@ -2,6 +2,7 @@ package com.grh.formation.serviceImpl;
 
 
 
+import com.grh.formation.Service.StorageService;
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.model.ScannedDocument;
 import com.grh.formation.repo.CollaborateurRepo;
@@ -16,7 +17,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class StorageServiceImpl implements com.grh.formation.Service.StorageService {
+public class StorageServiceImpl implements StorageService {
 
 
     private final ScannedDocumentRepo repository;

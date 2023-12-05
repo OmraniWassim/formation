@@ -1,5 +1,6 @@
 package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.CollaborateurService;
 import com.grh.formation.Service.ResponsableService;
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
@@ -13,7 +14,7 @@ import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
-public class CollaborateurServiceImpl implements com.grh.formation.Service.CollaborateurService {
+public class CollaborateurServiceImpl implements CollaborateurService {
     private final CollaborateurRepo collaborateurRepo;
     private final EtudeNatureRepo etudeNatureRepo;
     private final EtudeLevelRepo etudeLevelRepo;

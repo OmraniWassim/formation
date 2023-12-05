@@ -13,7 +13,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PosteServiceImpl implements PosteService {
 
-    private final DepartementRepo departementRepo;
     private final PosteRepo posteRepo;
 
 

@@ -1,5 +1,6 @@
 package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.ReportService;
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.repo.CollaborateurRepo;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +25,7 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class ReportServiceImpl implements com.grh.formation.Service.ReportService {
+public class ReportServiceImpl implements ReportService {
 
 
     private final CollaborateurRepo repository;

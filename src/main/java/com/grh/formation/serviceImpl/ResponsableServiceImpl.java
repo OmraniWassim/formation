@@ -1,5 +1,6 @@
 package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.ResponsableService;
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.model.Responsable;
 import com.grh.formation.repo.ResponsableRepo;
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ResponsableServiceImpl implements com.grh.formation.Service.ResponsableService {
+public class ResponsableServiceImpl implements ResponsableService {
 
     private  final ResponsableRepo responsableRepo;
     @Override

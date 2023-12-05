@@ -1,5 +1,6 @@
 package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.ContractTypeService;
 import com.grh.formation.model.ContractType;
 import com.grh.formation.model.PiecesJointes;
 import com.grh.formation.repo.ContractTypeRepo;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ContractTypeServiceImpl implements com.grh.formation.Service.ContractTypeService {
+public class ContractTypeServiceImpl implements ContractTypeService {
 
 
     private final ContractTypeRepo contractTypeRepo;
