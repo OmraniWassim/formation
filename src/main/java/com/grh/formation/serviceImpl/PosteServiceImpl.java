@@ -2,8 +2,7 @@ package com.grh.formation.serviceImpl;
 
 import com.grh.formation.Service.PosteService;
 import com.grh.formation.model.Poste;
-import com.grh.formation.repo.DepartementRepo;
-import com.grh.formation.repo.PosteRepo;
+import com.grh.formation.repository.PosteRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

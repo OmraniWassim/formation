@@ -3,7 +3,7 @@ package com.grh.formation.serviceImpl;
 import com.grh.formation.Service.ContractTypeService;
 import com.grh.formation.model.ContractType;
 import com.grh.formation.model.PiecesJointes;
-import com.grh.formation.repo.ContractTypeRepo;
+import com.grh.formation.repository.ContractTypeRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

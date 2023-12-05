@@ -3,7 +3,7 @@ package com.grh.formation.serviceImpl;
 import com.grh.formation.Service.CollaborateurService;
 import com.grh.formation.Service.ResponsableService;
 import com.grh.formation.model.*;
-import com.grh.formation.repo.*;
+import com.grh.formation.repository.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

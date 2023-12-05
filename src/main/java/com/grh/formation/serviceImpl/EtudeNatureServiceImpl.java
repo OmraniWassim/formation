@@ -2,7 +2,7 @@ package com.grh.formation.serviceImpl;
 
 import com.grh.formation.Service.EtudeNatureService;
 import com.grh.formation.model.EtudeNature;
-import com.grh.formation.repo.EtudeNatureRepo;
+import com.grh.formation.repository.EtudeNatureRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

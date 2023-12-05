@@ -1,4 +1,4 @@
-package com.grh.formation.repo;
+package com.grh.formation.repository;
 
 import com.grh.formation.model.ScannedDocument;
 import org.springframework.data.jpa.repository.JpaRepository;

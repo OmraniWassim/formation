@@ -2,7 +2,7 @@ package com.grh.formation.serviceImpl;
 
 import com.grh.formation.Service.EtudeLevelService;
 import com.grh.formation.model.EtudeLevel;
-import com.grh.formation.repo.EtudeLevelRepo;
+import com.grh.formation.repository.EtudeLevelRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

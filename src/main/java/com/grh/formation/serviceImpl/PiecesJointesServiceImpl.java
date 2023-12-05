@@ -2,7 +2,7 @@ package com.grh.formation.serviceImpl;
 
 import com.grh.formation.Service.PiecesJointesService;
 import com.grh.formation.model.PiecesJointes;
-import com.grh.formation.repo.PiecesJointesRepo;
+import com.grh.formation.repository.PiecesJointesRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -3,8 +3,8 @@ package com.grh.formation.serviceImpl;
 import com.grh.formation.Service.SalaryAdvantageService;
 import com.grh.formation.model.ContractType;
 import com.grh.formation.model.SalaryAdvantage;
-import com.grh.formation.repo.ContractTypeRepo;
-import com.grh.formation.repo.SalaryAdvantageRepo;
+import com.grh.formation.repository.ContractTypeRepo;
+import com.grh.formation.repository.SalaryAdvantageRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

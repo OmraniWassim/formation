@@ -2,7 +2,7 @@ package com.grh.formation.serviceImpl;
 
 import com.grh.formation.Service.DepartementService;
 import com.grh.formation.model.Departement;
-import com.grh.formation.repo.DepartementRepo;
+import com.grh.formation.repository.DepartementRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
