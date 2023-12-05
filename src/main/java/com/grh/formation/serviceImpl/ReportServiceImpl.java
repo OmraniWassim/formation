@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.repo.CollaborateurRepo;
@@ -24,29 +24,26 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class ReportService {
+public class ReportServiceImpl implements com.grh.formation.Service.ReportService {
 
 
     private final CollaborateurRepo repository;
 
 
+    @Override
     public ResponseEntity<byte[]> exportReport() throws FileNotFoundException, JRException {
         List<Collaborateur> collaborateurs = repository.findAll();
 
-        // Load file and compile it
         File file = ResourceUtils.getFile("classpath:collaborateurs.jrxml");
         JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(collaborateurs);
         Map<String, Object> parameters = new HashMap<>();
         parameters.put("createdBy", "Wassim");
 
-        // Fill report
         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
 
-        // Export report to byte array
         byte[] pdfBytes = exportReportToBytes(jasperPrint);
 
-        // Return byte array as response
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", "collaborateurs.pdf");
@@ -55,15 +52,4 @@ public class ReportService {
         return new ResponseEntity<>(pdfBytes, headers, HttpStatus.OK);
     }
 
-    private byte[] exportReportToBytes(JasperPrint jasperPrint) throws JRException {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-        // Export report to byte array
-        JRPdfExporter exporter = new JRPdfExporter();
-        exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-        exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(byteArrayOutputStream));
-        exporter.exportReport();
-
-        return byteArrayOutputStream.toByteArray();
-    }
 }

@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 import com.grh.formation.model.EtudeNature;
 import com.grh.formation.repo.EtudeNatureRepo;
@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EtudeNatureService {
+public class EtudeNatureServiceImpl implements com.grh.formation.Service.EtudeNatureService {
 
     private  final EtudeNatureRepo etudeNatureRepo;
     public List<EtudeNature> getAll(){

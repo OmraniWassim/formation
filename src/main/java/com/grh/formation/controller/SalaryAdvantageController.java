@@ -1,7 +1,7 @@
 package com.grh.formation.controller;
 
 import com.grh.formation.model.SalaryAdvantage;
-import com.grh.formation.service.SalaryAdvantageService;
+import com.grh.formation.serviceImpl.SalaryAdvantageServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/avantage")
 @RequiredArgsConstructor
 public class SalaryAdvantageController {
-    private final SalaryAdvantageService collaborateurService;
+    private final SalaryAdvantageServiceImpl collaborateurService;
 
     @GetMapping("/all")
     public List<SalaryAdvantage> getAllSalaryAdvantages() {

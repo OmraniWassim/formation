@@ -1,8 +1,8 @@
 package com.grh.formation.controller;
 
+import com.grh.formation.Service.CollaborateurService;
+import com.grh.formation.Service.ReportService;
 import com.grh.formation.model.Collaborateur;
-import com.grh.formation.service.CollaborateurService;
-import com.grh.formation.service.ReportService;
 import lombok.RequiredArgsConstructor;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.http.HttpStatus;

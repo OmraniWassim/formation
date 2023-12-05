@@ -1,9 +1,9 @@
 package com.grh.formation.controller;
 
+import com.grh.formation.Service.EtudeLevelService;
 import com.grh.formation.model.EtudeLevel;
 import com.grh.formation.model.EtudeNature;
-import com.grh.formation.service.EtudeLevelService;
-import com.grh.formation.service.EtudeNatureService;
+import com.grh.formation.serviceImpl.EtudeNatureServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +17,18 @@ import java.util.List;
 @RequiredArgsConstructor
 public class EtudeController {
 
-    private final EtudeLevelService etudeLevelService;
-    private final EtudeNatureService etudeNatureService;
+    private final EtudeLevelService etudeLevelServiceImpl;
+    private final EtudeNatureServiceImpl etudeNatureServiceImpl;
 
 
     @GetMapping("/getLevels")
     public ResponseEntity<List<EtudeLevel>> getAllEtudeLevels() {
-        return ResponseEntity.ok(etudeLevelService.getAll());
+        return ResponseEntity.ok(etudeLevelServiceImpl.getAll());
 
     }
     @GetMapping("/getNatures")
     public ResponseEntity<List<EtudeNature>> getAllEtudeNatures() {
-        return ResponseEntity.ok(etudeNatureService.getAll());
+        return ResponseEntity.ok(etudeNatureServiceImpl.getAll());
 
     }
 }

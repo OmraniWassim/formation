@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 import com.grh.formation.model.EtudeLevel;
 import com.grh.formation.repo.EtudeLevelRepo;
@@ -9,9 +9,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class EtudeLevelService {
+public class EtudeLevelServiceImpl implements com.grh.formation.Service.EtudeLevelService {
 
     private  final EtudeLevelRepo etudeLevelRepo;
+    @Override
     public List<EtudeLevel> getAll(){
         return  etudeLevelRepo.findAll();
     }

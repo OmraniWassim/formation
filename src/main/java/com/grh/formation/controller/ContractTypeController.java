@@ -1,9 +1,8 @@
 package com.grh.formation.controller;
 
 
+import com.grh.formation.Service.ContractTypeService;
 import com.grh.formation.model.ContractType;
-import com.grh.formation.model.Poste;
-import com.grh.formation.service.ContractTypeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +18,7 @@ import java.util.List;
 public class ContractTypeController {
 
 
-    private final  ContractTypeService contractTypeService;
+    private final ContractTypeService contractTypeService;
 
     @GetMapping("/{contractTypeName}/pieces-jointes")
     public ResponseEntity<List<String>> getPiecesJointesByContractType(@PathVariable String contractTypeName) {

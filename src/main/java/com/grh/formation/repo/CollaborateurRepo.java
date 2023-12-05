@@ -22,8 +22,11 @@ public interface CollaborateurRepo extends JpaRepository<Collaborateur,Long> {
 
     Collaborateur findByCin(int cin);
 
-    @Query(nativeQuery = true, value = "SELECT calculate_mass_salariale()")
+    @Query(value = "SELECT calculate_mass_salariale() FROM DUAL", nativeQuery = true)
     Double calculateMassSalariale();
+
+    @Query(value = "SELECT calculate_average_salary() FROM DUAL", nativeQuery = true)
+    Double calculateAverageSalary();
 
 
 

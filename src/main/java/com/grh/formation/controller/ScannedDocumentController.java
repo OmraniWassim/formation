@@ -1,6 +1,6 @@
 package com.grh.formation.controller;
 
-import com.grh.formation.service.StorageService;
+import com.grh.formation.Service.StorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

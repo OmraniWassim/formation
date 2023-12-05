@@ -1,7 +1,7 @@
 package com.grh.formation.controller;
 
 import com.grh.formation.model.Poste;
-import com.grh.formation.service.PosteService;
+import com.grh.formation.Service.PosteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

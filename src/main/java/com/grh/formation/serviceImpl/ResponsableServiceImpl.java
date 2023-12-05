@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 import com.grh.formation.model.Collaborateur;
 import com.grh.formation.model.Responsable;
@@ -10,12 +10,14 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ResponsableService {
+public class ResponsableServiceImpl implements com.grh.formation.Service.ResponsableService {
 
     private  final ResponsableRepo responsableRepo;
+    @Override
     public List<Responsable> getAll(){
         return  responsableRepo.findAll();
     }
+    @Override
     public Responsable ajouterResponsable(String name, Collaborateur collaborateur){
         Responsable responsable=new Responsable(name);
         return responsableRepo.save(responsable);

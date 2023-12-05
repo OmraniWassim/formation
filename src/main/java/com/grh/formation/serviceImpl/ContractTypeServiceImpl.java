@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 import com.grh.formation.model.ContractType;
 import com.grh.formation.model.PiecesJointes;
@@ -12,13 +12,14 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class ContractTypeService {
+public class ContractTypeServiceImpl implements com.grh.formation.Service.ContractTypeService {
 
 
     private final ContractTypeRepo contractTypeRepo;
 
 
 
+    @Override
     public List<String> getPiecesJointesNamesByContractType(String type) {
         ContractType contractType = contractTypeRepo.findByType(type);
 
@@ -31,6 +32,7 @@ public class ContractTypeService {
                 .map(PiecesJointes::getName)
                 .collect(Collectors.toList());
     }
+    @Override
     public List<ContractType> getAll() {
         return contractTypeRepo.findAll();
     }

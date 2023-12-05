@@ -1,17 +1,8 @@
 package com.grh.formation;
 
-import com.grh.formation.model.*;
-import com.grh.formation.repo.*;
-import com.grh.formation.service.CollaborateurService;
-import com.grh.formation.service.PosteService;
-import com.grh.formation.service.SalaryAdvantageService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
-import java.util.Date;
-import java.util.List;
 import java.util.TimeZone;
 
 @SpringBootApplication
@@ -25,7 +16,7 @@ public class FormationApplication {
 		SpringApplication.run(FormationApplication.class, args);
 	}
 
-	@Bean
+	/*@Bean
 	CommandLineRunner run(SalaryAdvantageService salaryAdvantageService,EtudeLevelRepo etudeLevelRepo,
 						  ContractTypeRepo contractTypeRepo,
 						  DepartementRepo departementRepo,
@@ -165,7 +156,7 @@ public class FormationApplication {
 
 		};
 
-	}
+	}*/
 
 }
 

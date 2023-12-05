@@ -1,5 +1,6 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.PiecesJointesService;
 import com.grh.formation.model.PiecesJointes;
 import com.grh.formation.repo.PiecesJointesRepo;
 import lombok.RequiredArgsConstructor;
@@ -9,9 +10,10 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class PiecesJointesService {
+public class PiecesJointesServiceImpl implements PiecesJointesService {
 
     private  final PiecesJointesRepo etudeNatureRepo;
+    @Override
     public List<PiecesJointes> getAll(){
         return  etudeNatureRepo.findAll();
     }

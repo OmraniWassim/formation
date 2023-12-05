@@ -1,7 +1,7 @@
 package com.grh.formation.controller;
 
+import com.grh.formation.Service.ResponsableService;
 import com.grh.formation.model.Responsable;
-import com.grh.formation.service.ResponsableService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
 
 
@@ -16,13 +16,14 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class StorageService {
+public class StorageServiceImpl implements com.grh.formation.Service.StorageService {
 
 
     private final ScannedDocumentRepo repository;
     private final CollaborateurRepo collaborateurRepo;
 
-    public String uploadPdf(MultipartFile file,int cin) throws IOException {
+    @Override
+    public String uploadPdf(MultipartFile file, int cin) throws IOException {
 
         ScannedDocument pdfDAta = repository.save(ScannedDocument.builder()
                 .name(file.getOriginalFilename())
@@ -39,6 +40,7 @@ public class StorageService {
         return null;
     }
 
+    @Override
     public byte[] downloadPdf(long fileId){
         Optional<ScannedDocument> dbScannedDocument = repository.findById(fileId);
         byte[] pdf=PdfUtils.decompressPdf(dbScannedDocument.get().getPdfData());

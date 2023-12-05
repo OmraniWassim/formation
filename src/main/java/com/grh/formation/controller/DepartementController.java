@@ -1,7 +1,7 @@
 package com.grh.formation.controller;
 
 import com.grh.formation.model.Departement;
-import com.grh.formation.service.DepartementService;
+import com.grh.formation.Service.DepartementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

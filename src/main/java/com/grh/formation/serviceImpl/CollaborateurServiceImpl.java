@@ -1,24 +1,19 @@
-package com.grh.formation.service;
+package com.grh.formation.serviceImpl;
 
+import com.grh.formation.Service.ResponsableService;
 import com.grh.formation.model.*;
 import com.grh.formation.repo.*;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.EntityNotFoundException;
-import java.sql.*;
-import java.time.LocalDate;
 import java.time.Year;
-import java.time.ZoneId;
 import java.util.*;
 import java.util.Date;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CollaborateurService {
+public class CollaborateurServiceImpl implements com.grh.formation.Service.CollaborateurService {
     private final CollaborateurRepo collaborateurRepo;
     private final EtudeNatureRepo etudeNatureRepo;
     private final EtudeLevelRepo etudeLevelRepo;
@@ -26,20 +21,23 @@ public class CollaborateurService {
     private final SalaryAdvantageRepo salaryAdvantageRepo;
     private final PosteRepo posteRepo;
     private final ResponsableRepo responsableRepo;
-    private final ResponsableService responsableService;
+    private final ResponsableService responsableServiceImpl;
 
 
 
 
+    @Override
     public List<Collaborateur> getAllCollaborateurs() {
         return collaborateurRepo.findAll();
     }
 
+    @Override
     public Optional<Collaborateur> getCollaborateurById(Long id) {
         return collaborateurRepo.findById(id);
     }
 
 
+    @Override
     public Collaborateur saveCollaborateur(
             Collaborateur collaborateur,
             Long etudeNatureId,
@@ -77,7 +75,7 @@ public class CollaborateurService {
         if(collaborateur.getNumSecuriteSociale()!=0 && collaborateurRepo.existsByNumSecuriteSociale(collaborateur.getNumSecuriteSociale())) throw  new RuntimeException("Num securite sociale deja existe");
         if(responsableId==0){
             collaborateur.setResponsable(null);
-            responsableService.ajouterResponsable(collaborateur.getNomComplet(),collaborateur);
+            responsableServiceImpl.ajouterResponsable(collaborateur.getNomComplet(),collaborateur);
         }
         collaborateur.setEtudeNature(etudeNature);
         collaborateur.setEtudeLevel(etudeLevel);
@@ -92,10 +90,12 @@ public class CollaborateurService {
     }
 
 
+    @Override
     public void deleteCollaborateur(Long id) {
         collaborateurRepo.deleteById(id);
     }
 
+    @Override
     public Collaborateur updateCollaborateur(
             Long etudeNatureId,
             Long etudeLevelId,
@@ -159,23 +159,18 @@ public class CollaborateurService {
         return collaborateurRepo.save(updatedCollaborateur);
     }
 
-    public static double calculateMassSalariale() {
-        double massSalariale = 0.0;
+    @Override
+    public  double calculateMassSalariale() {
+        return collaborateurRepo.calculateMassSalariale();
+    }
 
-        try (Connection connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/XE", "formation", "formation")) {
-            try (CallableStatement statement = connection.prepareCall("{ ? = call calculate_mass_salariale }")) {
-                statement.registerOutParameter(1, java.sql.Types.NUMERIC);
-                statement.execute();
-                massSalariale = statement.getDouble(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return massSalariale;
+    @Override
+    public  double calculateAverageSalary() {
+        return collaborateurRepo.calculateAverageSalary();
     }
 
 
+    @Override
     public Map<Integer, Long> calculateAgePyramid() {
         Map<Integer, Long> agePyramid = new HashMap<>();
         int currentYear = Year.now().getValue();
@@ -195,25 +190,7 @@ public class CollaborateurService {
 
 
 
-    public double calculateAverageSalary() {
-        List<Double> allSalaries = this.getAllSalaries();
 
-        if (allSalaries.isEmpty()) {
-            return 0.0;
-        }
-
-        double totalSalary = 0.0;
-        for (Double salary : allSalaries) {
-            totalSalary += salary;
-        }
-
-        return totalSalary / allSalaries.size();
-    }
-    public List<Double> getAllSalaries() {
-        return collaborateurRepo.findAll().stream()
-                .map(Collaborateur::getSalaireBrute)
-                .collect(Collectors.toList());
-    }
 
 
 
