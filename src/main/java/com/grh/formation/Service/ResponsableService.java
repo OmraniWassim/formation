@@ -8,5 +8,6 @@ import java.util.List;
 public interface ResponsableService {
     List<Responsable> getAll();
 
+
     Responsable ajouterResponsable(String name, Collaborateur collaborateur);
 }
